@@ -8,8 +8,8 @@ const int DAILY_SUMMARY_HOUR = 19;
 bool isSunShining = false;
 int sunShiningReadingCount = 0;
 int sunHidingReadingCount = 0;
+double numTotalHoursSpentInSun = 0;
 
-double numTotalHoursSpentInSun;
 int lastReading;
 time_t timeWhenSunBeganToShine;
 
@@ -54,6 +54,7 @@ void loop() {
 
   if (Time.hour() >= DAILY_SUMMARY_HOUR) {
     Particle.publish("DailySummary", String::format("%d", round(numTotalHoursSpentInSun)));
+    numTotalHoursSpentInSun = 0;
   }
 
   delay(1000);
